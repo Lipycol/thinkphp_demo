@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>database test</title>
+  </head>
+
+  <body>
+    <form action="{:url('select')}" method="post">
+      <h3>数据查询</h3>
+      <p>
+        <input type="submit" value="查询">
+      </p>
+    </form>
+
+    <form action="{:url('add')}" method="post">
+      <h3>数据插入</h3>
+      <p>
+        学号：<input type="text" name="uid" id="uid">
+      </p>
+      <p>
+        姓名：<input type="text" name="uname" id="uname">
+      </p>
+      <p>
+        <input type="submit" value="插入">
+      </p>
+    </form>
+
+    <form action="{:url('update')}" method="post">
+      <h3>数据更新</h3>
+      <p>
+        学号：<input type="text" name="uid" id="uid">
+      </p>
+      <p>
+        姓名：<input type="text" name="uname" id="uname">
+      </p>
+      <p>
+        <input type="submit" value="更新">
+      </p>
+    </form>
+
+    <form action="{:url('delete')}" method="post">
+      <h3>数据删除</h3>
+      <p>
+        学号：<input type="text" name="uid" id="uid">
+      </p>
+      <p>
+        <input type="submit" value="删除">
+      </p>
+    </form>
+
+  </body>
+</html>
