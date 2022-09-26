@@ -36,48 +36,44 @@ class Index extends Controller {
   public function add() {
     $uid = $_POST['uid'];
     $uname = $_POST['uname'];
-    if ($uid && $uname) {
-      $param['uid'] = $uid;
-      $param['uname'] = $uname;
-      if ((new StudentModel)->addData($param)) {
-        // $this->success('数据插入成功', url('student/index/index'));
-        return re_json(200, '操作成功！');
-      }
-      // $this->error('数据插入失败,已存在此数据');
-      return re_json(400, '操作失败，已存在此数据！');
+    if (!$uid || !$uname) {
+      // $this->error('数据插入失败,缺少所需信息');
+      return re_json(400, '操作失败，缺少所需信息！');
     }
-    // $this->error('数据插入失败,缺少所需信息');
-    return re_json(400, '操作失败，缺少所需信息！');
+    $param['uid'] = $uid;
+    $param['uname'] = $uname;
+    return (new StudentModel())->addData($param);
   }
 
   public function update() {
     $uid = $_POST['uid'];
     $uname = $_POST['uname'];
-    if ($uid && $uname) {
-      $param['uid'] = $uid;
-      $param['uname'] = $uname;
-      if ((new StudentModel())->updateData($param)) {
-        // $this->success('数据更新成功', url('student/index/index'));
-        return re_json(200, '操作成功！');
-      }
-      // $this->error('数据更新失败,不存在此数据');
-      return re_json(400, '操作失败，不存在此数据！');
+    if (!$uid || !$uname) {
+      return re_json(400, '操作失败，缺少所需信息！');
     }
-    // $this->error('数据更新失败,缺少所需信息');
-    return re_json(400, '操作失败，缺少所需信息！');
+    $param['uid'] = $uid;
+    $param['uname'] = $uname;
+    return (new StudentModel())->updateData($param);
   }
 
   public function delete() {
     $uid = $_POST['uid'];
-    if ($uid) {
-      if ((new StudentModel())->deleteData($uid)) {
-        // $this->success('数据删除成功', url('student/index/index'));
-        return re_json(200, '操作成功！');
-      }
-      // $this->error('数据删除失败,不存在此数据');
-      return re_json(400, '操作失败，不存在此数据！');
+    if (!$uid) {
+      return re_json(400, '操作失败，缺少所需信息！');
     }
-    // $this->error('数据删除失败,缺少所需信息');
-    return re_json(400, '操作失败，缺少所需信息！');
+    return (new StudentModel())->deleteData($uid);
+  }
+
+  public function college() {
+    $data = (new StudentModel())->collegeGroup();
+    if ($data) {
+      return re_json(200, '操作成功！', $data);
+    }
+    return re_json(500, '系统内部错误！');
+  }
+
+  public function collegeStu() {
+    $data = (new CollegeModel())->collegeStudent();
+    return re_json(200, '操作成功！', $data);
   }
 }
