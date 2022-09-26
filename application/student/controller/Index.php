@@ -21,7 +21,7 @@ class Index extends Controller {
     // $add = Db::table("student")->insert($ad);
     // $add = db("student")->insert($ad);
     // $this->success('跳转成功', url('student/index'));
-    $data = (new StudentModel())->collegeGroup();
+    $data = (new StudentModel())->findData();
     if ($data) {
       // return json($data);
       return re_json(200, '操作成功！', $data);
