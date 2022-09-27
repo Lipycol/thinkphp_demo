@@ -3,11 +3,12 @@ namespace app\student\model;
 
 use think\Db;
 use think\Model;
+use think\Exception;
 
 class Student extends Model {
   public function findData() {
     $data = $this->alias('stu')
-      ->join('college col', 'col.id=stu.college_id')
+      ->leftJoin('college col', 'col.id=stu.college_id')
       ->field('stu.*, col.name as college_name')
       ->order('id', 'asc')
       ->select();
@@ -16,7 +17,7 @@ class Student extends Model {
 
   public function collegeGroup() {
     $data = $this->alias('stu')
-      ->join('college col', 'col.id = stu.college_id')
+      ->leftJoin('college col', 'col.id = stu.college_id')
       ->field('stu.college_id, col.name as college_name, count(stu.id) as stu_count')
       ->group('stu.college_id')
       ->select();
@@ -30,7 +31,7 @@ class Student extends Model {
       $add['name'] = $param['uname'];
       $this->insert($add);
       Db::commit();
-    } catch (\Exception $e) {
+    } catch (Exception $e) {
       Db::rollback();
       return re_json(400, '操作失败，已存在此数据！');
     }
@@ -45,7 +46,7 @@ class Student extends Model {
       $this->where('id', $param['uid'])
         ->update(['name' => $param['uname']]);
       Db::commit();
-    } catch (\Exception $e) {
+    } catch (Exception $e) {
       Db::rollback();
       return re_json(400, '操作失败，不存在此数据！');
     }
@@ -60,7 +61,7 @@ class Student extends Model {
       $this->where('id', $param)
         ->delete();
       Db::commit();
-    } catch (\Exception $e) {
+    } catch (Exception $e) {
       return re_json(400, '操作失败，不存在此数据！');
     }
     return re_json(200, '操作成功！');
