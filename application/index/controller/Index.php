@@ -21,6 +21,10 @@ class Index extends Controller
         return 'hello';
     }
 
+    public function hello() {
+        return '123';
+    }
+
     function findPasswordKey($str1='',$str2=''){
         $temp = [];
         $max = 0;
