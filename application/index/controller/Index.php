@@ -21,11 +21,6 @@ class Index extends Controller
     {
         return 'hello,' . $name;
     }
-    
-    public function world($name = 'ThinkPHP5.1')
-    {
-        return 'hello,' . $name;
-    }
 
     function findPasswordKey($str1='',$str2=''){
         $temp = [];
