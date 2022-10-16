@@ -18,7 +18,7 @@ class Index extends Controller
     }
 
     public function hello() {
-        return 'world';
+        return 'hello';
     }
 
     public function world() {
