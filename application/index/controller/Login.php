@@ -11,6 +11,10 @@ class Login extends Controller {
     return $this->fetch();
   }
 
+  public function test() {
+    return 'abc';
+  }
+
   public function hello($name = 'Luxuria')
     {
         return 'hello,' . $name;

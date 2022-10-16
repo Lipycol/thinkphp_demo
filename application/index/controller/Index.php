@@ -17,6 +17,14 @@ class Index extends Controller
         return $this->request->root(true);
     }
 
+    public function hello() {
+        return 'world';
+    }
+
+    public function world() {
+        return 'hello';
+    }
+
     function findPasswordKey($str1='',$str2=''){
         $temp = [];
         $max = 0;
