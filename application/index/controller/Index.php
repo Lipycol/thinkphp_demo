@@ -17,12 +17,11 @@ class Index extends Controller
         return $this->request->root(true);
     }
     
-    public world() {
+    public function world() {
         return 'hello';
     }
-
-    public function world() {
-        return 'hello,world';
+    public function hello() {
+        return '123';
     }
 
     function findPasswordKey($str1='',$str2=''){
