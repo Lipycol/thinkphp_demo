@@ -17,17 +17,8 @@ class Index extends Controller
         return $this->request->root(true);
     }
 
-    public function test() {
-        return 'hello,world!';
-    }
-
-    public function test2() {
-        return 'cba';
-    }
-
-    public function hello($name = 'ThinkPHP5.1')
-    {
-        return 'hello,' . $name;
+    public function world() {
+        return 'hello';
     }
 
     function findPasswordKey($str1='',$str2=''){
