@@ -21,6 +21,10 @@ class Index extends Controller
         return 'hello,world!';
     }
 
+    public function test2() {
+        return 'cba';
+    }
+
     public function hello($name = 'ThinkPHP5.1')
     {
         return 'hello,' . $name;
