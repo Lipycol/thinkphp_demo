@@ -19,13 +19,13 @@ return [
     // 应用地址
     'app_host'               => '',
     // 应用调试模式
-    'app_debug'              => false,
+    'app_debug'              => true,
     // 应用Trace
-    'app_trace'              => false,
+    'app_trace'              => true,
     // 是否支持多模块
     'app_multi_module'       => true,
     // 入口自动绑定模块
-    'auto_bind_module'       => true,
+    'auto_bind_module'       => false,
     // 注册的根命名空间
     'root_namespace'         => [],
     // 默认输出类型
@@ -142,5 +142,15 @@ return [
     'show_error_msg'         => false,
     // 异常处理handle类 留空使用 \think\exception\Handle
     'exception_handle'       => '',
+
+    'captcha' => [
+        'length' => 3,
+        // 验证码字体大小
+        'fontSize' => 40,
+        // 是否画混淆曲线
+        'useCurve' => false,
+        // 是否添加杂点
+        'userNoise' => false,
+    ],
 
 ];

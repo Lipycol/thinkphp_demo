@@ -1,4 +1,4 @@
 <?php
 return [
-  app\http\middleware\Check::class,
+  Check::class,
 ];

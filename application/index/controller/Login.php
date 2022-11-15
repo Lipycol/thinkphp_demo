@@ -2,17 +2,49 @@
 namespace app\index\controller;
 
 use think\Controller;
+use app\index\model\AdminInfo as AdminInfoModel;
 
 class Login extends Controller {
-
-  protected $middleware = ['Check'];
 
   public function index() {
     return $this->fetch();
   }
 
+  /**
+     * 用户登录
+     */
+    public function login() {
+      $param = request()->post();
+      // if (!isset($param['captcha_token']) || isEmptyStr($param['captcha_token'])) {
+      //     return re_json(400, '参数错误！');
+      // }
+      // $captcha = cache($param['captcha_token']);
+      // if(!captcha_check($param['code']))
+      //   {
+      //     return re_json(400, '验证码错误，请重新输入！');
+      //   }
+      // if (!isset($param['account']) || isEmptyStr($param['account'], 100) ||!isset($param['password']) || isEmptyStr($param['password'], 100)) {
+      //     return re_json(400, '账号或密码为空或格式不正确，请重新输入！');
+      // }
+      $result = $this->validate($param, 'app\index\validate\User');
+      if (true !== $result) {
+        return re_json(400, $result);
+      }
+      return (new AdminInfoModel())->checkLogin($param['account'], $param['password']);
+  }
+
   public function test() {
-    return 'abc';
+    return captcha();
+  }
+  
+  public function verify() {
+    $code = request()->post('code');
+    if(!captcha_check($code))
+    {
+      return '错误';
+    } else {
+      return '正确';
+    }
   }
 
   public function hello($name = 'Luxuria')
